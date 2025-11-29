@@ -13,7 +13,7 @@ import myImage5 from "../../assets/images/image4.png";
 import myImage7 from "../../assets/images/image2.png";
 import myImage8 from "../../assets/images/bag.png";
 import myImage9 from "../../assets/images/meck.png";
-import myImage10 from "../../assets/images/Gp1.png";
+import myImage10 from "../../assets/images/GP1.png";
 import myImage11 from "../../assets/images/jack.png";
 import Footer from "../layout/Footer";
 
