@@ -50,14 +50,6 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/product/:id" element={<ProductDetails />} />
-
-
-
-
-
-
-
-
       </Routes>
     </BrowserRouter>
   );
