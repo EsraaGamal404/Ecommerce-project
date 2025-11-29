@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { IoSendOutline } from "react-icons/io5";
 import myImage from '../../assets/images/Qrcode 1.png'
-import myImage2 from '../../assets/images/Googleplay.png'
+import myImage2 from '../../assets/images/GooglePlay.png'
 import myImage3 from '../../assets/images/AppStore.png'
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
