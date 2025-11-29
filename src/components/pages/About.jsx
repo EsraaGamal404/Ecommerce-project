@@ -24,7 +24,7 @@ export default function About(){
     <div>
       <HeaderWithAbout />
   <div className="mt-16 ml-14  flex gap-5">
-  <Link className="text-[--text-color]" to="/Home">Home /</Link>
+  <Link className="text-[--text-color]" to="/">Home /</Link>
   <Link  to="/About">About </Link>
 </div>
 <div className="mt-16 ml-14  flex gap-10 flex-wrap">
