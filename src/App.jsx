@@ -35,7 +35,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/Home" element={<MainPage />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/HeaderWithAccount" element={<HeaderWithAccount />} />
