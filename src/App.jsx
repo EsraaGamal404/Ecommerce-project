@@ -47,9 +47,9 @@ function App() {
         <Route path="/HeaderWithAbout" element={<HeaderWithAbout />} />
         <Route path="/HeaderWithContact" element={<HeaderWithContact />} />
         <Route path="/Contact" element={<Contact />} />
-        <Route path="*" element={<NotFound />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
