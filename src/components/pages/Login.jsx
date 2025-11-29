@@ -1,5 +1,5 @@
 import LoginHeader from "../layout/LoginHeader";
-import myImage from "../../assets/images/side Image.png";
+import myImage from "../../assets/images/Side Image.png";
 import Footer from "../layout/Footer";
 
 export default function SignUp() {
