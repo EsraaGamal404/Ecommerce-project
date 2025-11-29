@@ -1,5 +1,5 @@
 import SignUpHeader from "../layout/SignUpHeader";
-import myImage from "../../assets/images/side Image.png";
+import myImage from "../../assets/images/Silder.png";
 import myImage2 from "../../assets/images/Google.png";
 import { Link } from "react-router";
 import Footer from "../layout/Footer";
