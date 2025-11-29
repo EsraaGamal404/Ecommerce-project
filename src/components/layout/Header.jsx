@@ -61,7 +61,7 @@ export default function Header(){
 <div className="container mx-auto px-4 mt-6">
   <div className="flex justify-between items-center">
   
-    <a className="font-bold text-2xl" href="/Home">Exclusive</a>
+    <a className="font-bold text-2xl" href="/">Exclusive</a>
 
     <button className="md:hidden text-3xl" onClick={() => setOpen(!open)}>
       {open ? <MdOutlineRestaurantMenu /> : <CiMenuFries />}
@@ -73,7 +73,7 @@ export default function Header(){
       ${open ? "top-40" : "top-[-500px]"}`}
     >
       <ul className="md:flex gap-10 ">
-        <li><Link className="active" to="/Home" onClick={() => setOpen(false)}>Home</Link></li>
+        <li><Link className="active" to="/" onClick={() => setOpen(false)}>Home</Link></li>
         <li><Link to="/Contact" onClick={() => setOpen(false)}>Contact</Link></li>
         <li><Link to="/About" onClick={() => setOpen(false)}>About</Link></li>
         <li><Link to="/SignUp" onClick={() => setOpen(false)}>Sign Up</Link></li>

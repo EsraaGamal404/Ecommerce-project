@@ -58,7 +58,7 @@ export default function HeaderWithAccount() {
 
       <div className="container mx-auto px-4 mt-6">
         <div className="flex justify-between items-center">
-          <Link className="font-bold text-2xl" to="/Home">Exclusive</Link>
+          <Link className="font-bold text-2xl" to="/">Exclusive</Link>
 
           <button
             className="md:hidden text-3xl"
@@ -73,7 +73,7 @@ export default function HeaderWithAccount() {
         >
           <ul className="md:flex gap-10">
             <li>
-              <Link to="/Home" onClick={() => setOpenMobileMenu(false)}>Home</Link>
+              <Link to="/" onClick={() => setOpenMobileMenu(false)}>Home</Link>
             </li>
             <li>
               <Link to="/Contact" onClick={() => setOpenMobileMenu(false)}>Contact</Link>

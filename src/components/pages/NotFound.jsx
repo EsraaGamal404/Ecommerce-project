@@ -7,7 +7,7 @@ export default function NotFound(){
     <div>
       <HeaderWithAccount />
         <div className="mt-16 ml-32 flex gap-5">
-  <Link className="text-[--text-color]" to="/Home">Home /</Link>
+  <Link className="text-[--text-color]" to="/">Home /</Link>
   <Link  to="/NotFound"> NotFound</Link>
 </div>
 <div className="info flex flex-col items-center justify-center mt-20">
