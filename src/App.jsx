@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./assets/styles/App.css";
 import Header from "./components/layout/Header";
 import Hero from "./components/pages/Hero";
@@ -33,7 +33,7 @@ function App() {
 
   
   return (
-    <BrowserRouter>
+   
       <Routes>
         <Route path="/Home" element={<MainPage />} />
         <Route path="/SignUp" element={<SignUp />} />
@@ -51,7 +51,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+  
   );
 }
 function MainPage() {
