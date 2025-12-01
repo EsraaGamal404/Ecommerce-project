@@ -60,7 +60,7 @@ export default function Header(){
       ${open ? "top-40" : "top-[-500px]"}`}
     >
       <ul className="md:flex gap-10 ">
-        <li><Link to="/" onClick={() => setOpen(false)}>Home</Link></li>
+        <li><Link to="/Home" onClick={() => setOpen(false)}>Home</Link></li>
         <li><Link to="/Contact" onClick={() => setOpen(false)}>Contact</Link></li>
         <li><Link to="/About" onClick={() => setOpen(false)}>About</Link></li>
         <li><Link className="active" to="/SignUp" onClick={() => setOpen(false)}>Sign Up</Link></li>

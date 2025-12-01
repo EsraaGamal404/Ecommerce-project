@@ -61,7 +61,7 @@ export default function Header(){
 <div className="container mx-auto px-4 mt-6">
   <div className="flex justify-between items-center">
   
-    <a className="font-bold text-2xl" href="/">Exclusive</a>
+    <a className="font-bold text-2xl" href="/Home">Exclusive</a>
 
     <button className="md:hidden text-3xl" onClick={() => setOpen(!open)}>
       {open ? <MdOutlineRestaurantMenu /> : <CiMenuFries />}

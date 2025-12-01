@@ -74,7 +74,7 @@ export default function HeaderWithAccount() {
           >
             <ul className="md:flex gap-10">
               <li>
-                <Link to="/" onClick={() => setOpenMobileMenu(false)}>Home</Link>
+                <Link to="/Home" onClick={() => setOpenMobileMenu(false)}>Home</Link>
               </li>
               <li>
                 <Link to="/Contact" onClick={() => setOpenMobileMenu(false)}>Contact</Link>
