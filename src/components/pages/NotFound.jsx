@@ -13,7 +13,7 @@ export default function NotFound(){
 <div className="info flex flex-col items-center justify-center mt-20">
   <h1 className="font-medium text-7xl">404 Not Found</h1>
   <p className="mt-7">Your visited page not found. You may go home page.</p>
-   <Link to="/" className="">
+   <Link to="/Home" className="">
      <button
  className="bg-[--alt-text-color] py-2 text-white  rounded mt-10 px-7 hover:opacity-90 ">Back to home page </button>
   </Link>
