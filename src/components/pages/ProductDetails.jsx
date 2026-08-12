@@ -1,36 +1,23 @@
-import { Link } from "react-router";
-import HeaderWithAccount from "../layout/HeaderWithAccount";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { FaStar } from "react-icons/fa";
-import { CiHeart } from "react-icons/ci";
-import { CiRead } from "react-icons/ci";
+import { CiHeart, CiRead } from "react-icons/ci";
 import { useState } from "react";
+
+import HeaderWithAccount from "../layout/HeaderWithAccount";
+import Footer from "../layout/Footer";
+
 import myImage from "../../assets/images/image1.png";
 import myImage3 from "../../assets/images/delivary.png";
 import myImage4 from "../../assets/images/return.png";
-import myImage6 from "../../assets/images/ibade.png";
 import myImage5 from "../../assets/images/image4.png";
+import myImage6 from "../../assets/images/ibade.png";
 import myImage7 from "../../assets/images/image2.png";
 import myImage8 from "../../assets/images/bag.png";
 import myImage9 from "../../assets/images/meck.png";
 import myImage10 from "../../assets/images/GP1.png";
 import myImage11 from "../../assets/images/jack.png";
-import Footer from "../layout/Footer";
 
-
-
-
-
-
-
-
-
-
-
-
-
-export default function ProductDetails(){
-
+export default function ProductDetails() {
   const { id } = useParams();
 
   const products = [
@@ -39,9 +26,20 @@ export default function ProductDetails(){
       name: "Havic HV-G92 Gamepad",
       price: 192,
       images: [myImage, myImage, myImage],
-      desc: "PlayStation 5 Controller - High quality wireless gamepad with ergonomic design",
+      desc: "PlayStation 5 Controller - High quality wireless gamepad with ergonomic design.",
       reviews: 65,
-      stars: 155,
+      rating: 4,
+      colors: ["#000000", "#ffffff", "#ff0000"],
+      sizes: ["S", "M", "L"],
+    },
+    {
+      id: 2,
+      name: "ASUS FHD Gaming Laptop",
+      price: 960,
+      images: [myImage6, myImage6, myImage6],
+      desc: "ASUS FHD Gaming Laptop with powerful performance and modern design.",
+      reviews: 65,
+      rating: 5,
       colors: ["#000000", "#ffffff", "#ff0000"],
       sizes: ["S", "M", "L"],
     },
@@ -50,356 +48,445 @@ export default function ProductDetails(){
       name: "AK-900 Wired Keyboard",
       price: 200,
       images: [myImage5, myImage5, myImage5],
-      desc: "Comfortable wired keyboard with LED lighting and responsive keys. Perfect for and durable buttons. Smooth grip and perfect for gaming enthusiasts,both office and gaming use",
+      desc: "Comfortable wired keyboard with LED lighting and responsive keys. Perfect for office and gaming use.",
       reviews: 65,
-      stars: 4,
+      rating: 4,
       colors: ["#000000", "#00aaff"],
       sizes: ["S", "M"],
     },
-  {
-     id:2,
-      name:"ASUS FHD Gaming Laptop",
-      price:960,
-      img:myImage6,
-      images:[myImage6,myImage6,myImage6],
-      desc:"ASUS FHD Gaming Laptop",
-       reviews: 65,
- stars: 155,
- colors: ["#000000", "#ffffff", "#ff0000"],
- sizes: ["S", "M", "L"],
-  },
-  {
-        id:4,
-      name:"IPS LCD Gaming Monitor",
-      price:1160,
-      img:myImage7,
-      images:[myImage7,myImage7,myImage7],
-      desc:"IPS LCD Gaming Monitor",
+    {
+      id: 4,
+      name: "IPS LCD Gaming Monitor",
+      price: 1160,
+      images: [myImage7, myImage7, myImage7],
+      desc: "IPS LCD Gaming Monitor with high-quality display and excellent gaming performance.",
       reviews: 65,
- stars: 155,
- colors: ["#000000", "#ffffff", "#ff0000"],
- sizes: ["S", "M", "L"],
+      rating: 4,
+      colors: ["#000000", "#ffffff", "#ff0000"],
+      sizes: ["S", "M", "L"],
     },
     {
-    id:5,
-      name:"Gucci duffle bag",
-      price:960,
-      img:myImage8,
-      images:[myImage8,myImage8,myImage8],
-      desc:"Gucci duffle bag",
+      id: 5,
+      name: "Gucci Duffle Bag",
+      price: 960,
+      images: [myImage8, myImage8, myImage8],
+      desc: "Stylish Gucci duffle bag with premium quality materials and modern design.",
       reviews: 65,
- stars: 155,
- colors: ["#000000", "#ffffff", "#ff0000"],
- sizes: ["S", "M", "L"],
+      rating: 4,
+      colors: ["#000000", "#ffffff", "#ff0000"],
+      sizes: ["S", "M", "L"],
     },
     {
-          id:6,
-      name:"RGB liquid CPU Cooler",
-      price:1960,
-      img:myImage9,
-      images:[myImage9,myImage9,myImage9],
-      desc:"RGB liquid CPU Cooler",
+      id: 6,
+      name: "RGB Liquid CPU Cooler",
+      price: 1960,
+      images: [myImage9, myImage9, myImage9],
+      desc: "RGB liquid CPU cooler designed for efficient cooling and modern gaming setups.",
       reviews: 65,
- stars: 155,
- colors: ["#000000", "#ffffff", "#ff0000"],
- sizes: ["S", "M", "L"],
+      rating: 5,
+      colors: ["#000000", "#ffffff", "#ff0000"],
+      sizes: ["S", "M", "L"],
     },
     {
-    id:7,
-      name:"GP11 Shooter USB Gamepad",
-      price:550,
-      img:myImage10,
-      images:[myImage10,myImage10,myImage10],
-      desc:"GP11 Shooter USB Gamepad",
+      id: 7,
+      name: "GP11 Shooter USB Gamepad",
+      price: 550,
+      images: [myImage10, myImage10, myImage10],
+      desc: "GP11 Shooter USB Gamepad with comfortable grip and responsive controls.",
       reviews: 65,
- stars: 155,
- colors: ["#000000", "#ffffff", "#ff0000"],
- sizes: ["S", "M", "L"],
+      rating: 5,
+      colors: ["#000000", "#ffffff", "#ff0000"],
+      sizes: ["S", "M", "L"],
     },
     {
-            id:8,
-            name:"Quilted Satin Jacket",
-            price:750,
-            img:myImage11,
-            images:[myImage11,myImage11,myImage11],
-            desc:"Quilted Satin Jacket",
-            reviews: 65,
-       stars: 155,
-       colors: ["#000000", "#ffffff", "#ff0000"],
-       sizes: ["S", "M", "L"],
-    }
+      id: 8,
+      name: "Quilted Satin Jacket",
+      price: 750,
+      images: [myImage11, myImage11, myImage11],
+      desc: "Quilted Satin Jacket with a modern style and comfortable fit.",
+      reviews: 65,
+      rating: 5,
+      colors: ["#000000", "#ffffff", "#ff0000"],
+      sizes: ["S", "M", "L"],
+    },
   ];
 
   const product = products.find((item) => item.id === Number(id));
 
-  const [selectedColor, setSelectedColor] = useState(product?.colors[0]);
-  const [selectedSize, setSelectedSize] = useState(product?.sizes[0]);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [selectedColor, setSelectedColor] = useState(
+    product?.colors?.[0] || ""
+  );
+  const [selectedSize, setSelectedSize] = useState(
+    product?.sizes?.[0] || ""
+  );
   const [quantity, setQuantity] = useState(1);
 
-  if (!product) return <h2 className="text-center mt-10">Product not found</h2>;
-
-
-
-
-  return(
-    <div>
-      <HeaderWithAccount />
-        <div className="mt-16 ml-32 flex gap-5">
-  <Link className="text-[--text-color]" to="/Account">Account /</Link>
-    <Link className="text-[--text-color]" to="/">Gaming /</Link>
-  <Link  to="/">Havic HV G-92 Gamepad </Link>
-</div>
-
-
-
-
-
-
-
-   
-    <div className="max-w-6xl mx-auto mt-10 p-4 grid md:grid-cols-3 gap-10 ">
-     
-        <div className="flex gap-4 items-center flex-col">
-    {product.images.map((img, index) => (
-      <img
-        key={index}
-        src={img}
-        alt=""
-        className="w-20 h-20 object-cover border rounded cursor-pointer hover:opacity-70"
-      />
-    ))}
-  </div>
-      <div className="flex justify-center items-center">
-        <img
-          src={product.images[0]}
-          alt={product.name}
-          className=" rounded-lg shadow-lg max-w-md mr-40 w-96 h-96 mb-40"
-        />
-      </div>
-
-     
+  if (!product) {
+    return (
       <div>
-        <h2 className="text-2xl font-semibold">{product.name}</h2>
-        <p className="text-gray-500 mt-2 text-lg">${product.price}</p>
+        <HeaderWithAccount />
 
-       
-        <div className="flex items-center gap-2 mt-2 text-yellow-400">
-           <div className='text-yellow-400 flex gap-1 items-center justify-center'>
-  <FaStar />
-  <FaStar />
-<FaStar />
-<FaStar />
-<p className="text-[--text-color]">(65)</p>
-</div>
-          <span className="text-gray-500 text-sm">
-            ({product.reviews} reviews)
-          </span>
-        </div>
+        <div className="min-h-[50vh] flex flex-col items-center justify-center px-4">
+          <h2 className="text-2xl md:text-3xl font-semibold">
+            Product not found
+          </h2>
 
-       
-        <p className="mt-4 text-gray-700">{product.desc}</p>
-
-      
-        <div className="mt-6">
-          <p className="font-medium mb-2">Size:</p>
-          <div className="flex gap-2">
-            {product.sizes.map((size) => (
-              <button
-                key={size}
-                onClick={() => setSelectedSize(size)}
-                className={`border px-4 py-1 rounded ${
-                  selectedSize === size
-                    ? "bg-black text-white"
-                    : "hover:bg-gray-200"
-                }`}
-              >
-                {size}
-              </button>
-            ))}
-          </div>
-        </div>
-
-     
-        <div className="mt-6">
-          <p className="font-medium mb-2">Colours:</p>
-          <div className="flex gap-3">
-            {product.colors.map((color) => (
-              <div
-                key={color}
-                onClick={() => setSelectedColor(color)}
-                className={`w-8 h-8 rounded-full border-2 cursor-pointer ${
-                  selectedColor === color ? "border-black" : "border-gray-300"
-                }`}
-                style={{ backgroundColor: color }}
-              ></div>
-            ))}
-          </div>
-        </div>
-
-      
-        <div className="mt-6 flex items-center gap-3">
-          <p className="font-medium">Quantity:</p>
-          <button
-            onClick={() => setQuantity((q) => (q > 1 ? q - 1 : 1))}
-            className="px-3 py-1 border rounded"
+          <Link
+            to="/Home"
+            className="mt-6 bg-[--alt-text-color] text-white px-6 py-3 rounded hover:opacity-90"
           >
-            -
-          </button>
-          <span>{quantity}</span>
-          <button
-            onClick={() => setQuantity((q) => q + 1)}
-            className="px-3 py-1 border rounded"
-          >
-            +
-          </button>
-        </div>
-
-       
-        <div className="mt-6 flex items-center gap-3">
-          <button className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition">
-            Buy Now
-          </button>
-          <Link to="/cart" className="border border-black px-6 py-2 rounded hover:bg-black hover:text-white transition">
-            Add To Cart
+            Back to Home
           </Link>
         </div>
 
-        <div className="mt-8 text-sm border p-2 border-black">
-          <div className="flex justify-between items-center gap-4">
-<img className="w-7 h-5" src={myImage3} alt="" />
-          <div>
-          <p className="text-black font-medium">Free Delivery</p>
-          <p className="text-black mt-2">Enter your postal code for Delivery Availability</p>
-          </div></div>
-          <hr />
-          <div className="flex justify-between items-center ">
-            <img className="w-7 h-5" src={myImage4} alt="" />
-          <div className="mr-12 mt-1">
-          <p className="text-black font-medium">30-Day Return Guarantee</p>
-          <p className="text-black  mt-2">Free 30 Days Delivery Returns. Details</p>
-        </div></div></div>
+        <Footer />
       </div>
-    </div>
-    <div className="flex items-center mt-16 ml-32">
-      <div className="bg-[--alt-text-color] w-4 h-6 rounded"></div>
-        <h3 className="text-xl">Related Item</h3></div>
-    <div className="flex items-center gap-5 mt-16 ml-32">
+    );
+  }
 
-   <div className="card-list mt-5 flex gap-5 flex-wrap">
-     <div className="card w-fit">
-    <div className='relative'>
-       <img className='p-8 bg-[--secondary-color] ' src={myImage} alt="" />
-       <p className='absolute top-4 left-3 bg-[--alt-text-color] text-white rounded p-1'>-40%</p>
-       <p className='absolute top-4 left-52 bg-white rounded p-1 text-xl'>
-       <CiHeart />
-       </p>
-       <p className='absolute bottom-40 left-52  bg-white rounded p-1 text-xl'>
-       <CiRead />
-        </p>
-       </div>
-       <h3 className='font-bold mt-2'>HAVIT HV-G92 Gamepad</h3>
-       <div className='flex gap-3 font-bold mt-2' >
-         <p className='text-[--alt-text-color]'>$120</p>
-         <p className='text-[--text-color]'><del>$160</del></p>
-       </div>
-       <div className='flex gap-3 mt-3 items-center'>
-       <div className='text-yellow-400 flex gap-1'>
-     <FaStar />
-     <FaStar />
-     <FaStar />
-     <FaStar />
-     <FaStar />
-       </div>
-       <p className='text-[--text-color]'>(88)</p>
-  </div>
-     </div> 
-     
+  const relatedProducts = [
+    {
+      name: "HAVIT HV-G92 Gamepad",
+      image: myImage,
+      price: 120,
+      oldPrice: 160,
+      discount: "-40%",
+      reviews: 88,
+    },
+    {
+      name: "AK-900 Wired Keyboard",
+      image: myImage5,
+      price: 960,
+      oldPrice: 1160,
+      discount: "-35%",
+      reviews: 75,
+    },
+    {
+      name: "IPS LCD Gaming Monitor",
+      image: myImage7,
+      price: 960,
+      oldPrice: 1160,
+      discount: "-35%",
+      reviews: 75,
+    },
+    {
+      name: "Gucci Duffle Bag",
+      image: myImage8,
+      price: 960,
+      oldPrice: 1160,
+      discount: null,
+      reviews: 65,
+    },
+  ];
 
+  return (
+    <div className="min-h-screen">
+      <HeaderWithAccount />
 
-      <div className="card w-fit">
-      <div className='relative bg-[--secondary-color] h-[245px]'>
-         <img className='p-10  ' src={myImage5} alt="" />
-         <p className='absolute top-4 left-3 bg-[--alt-text-color] text-white rounded p-1'>-35%</p>
-         <p className='absolute top-4 left-56 bg-white rounded p-1 text-xl'>
-         <CiHeart />
-         </p>
-         <p className='absolute bottom-40 left-56  bg-white rounded p-1 text-xl'>
-         <CiRead />
-          </p>
-         </div>
-         <h3 className='font-bold mt-2'>AK-900 Wired Keyboard</h3>
-         <div className='flex gap-3 font-bold mt-2' >
-           <p className='text-[--alt-text-color]'>$960</p>
-           <p className='text-[--text-color]'><del>$1160</del></p>
-         </div>
-         <div className='flex gap-3 mt-3 items-center'>
-         <div className='text-yellow-400 flex gap-1'>
-       <FaStar />
-       <FaStar />
-       <FaStar />
-       <FaStar />
-      </div>
-      <p className='text-[--text-color]'>(75)</p>
-    </div>
-       </div>
+      {/* Breadcrumb */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 md:mt-12">
+        <div className="flex flex-wrap gap-2 text-sm md:text-base">
+          <Link
+            className="text-[--text-color] hover:text-black"
+            to="/Account"
+          >
+            Account /
+          </Link>
 
-           <div className="card w-fit">
-      <div className='relative bg-[--secondary-color] h-[245px]'>
-         <img className='p-10  ' src={myImage7} alt="" />
-         <p className='absolute top-4 left-3 bg-[--alt-text-color] text-white rounded p-1'>-35%</p>
-         <p className='absolute top-4 left-56 bg-white rounded p-1 text-xl'>
-         <CiHeart />
-         </p>
-         <p className='absolute bottom-40 left-56  bg-white rounded p-1 text-xl'>
-         <CiRead />
-          </p>
-         </div>
-         <h3 className='font-bold mt-2'>IPS LCD Gaming Monitor</h3>
-         <div className='flex gap-3 font-bold mt-2' >
-           <p className='text-[--alt-text-color]'>$960</p>
-           <p className='text-[--text-color]'><del>$1160</del></p>
-         </div>
-         <div className='flex gap-3 mt-3 items-center'>
-         <div className='text-yellow-400 flex gap-1'>
-       <FaStar />
-       <FaStar />
-       <FaStar />
-       <FaStar />
-      </div>
-      <p className='text-[--text-color]'>(75)</p>
-    </div>
-       </div>
-     
-     
-     
-           <div className="card w-fit">
-     <div className='relative h-[245px]  bg-[--secondary-color] '>
-        <img className='p-12 ' src={myImage9} alt="" />
-        <p className='absolute top-4 left-60 bg-white rounded p-1 text-xl'>
-        <CiHeart />
-        </p>
-        <p className='absolute bottom-40 left-60  bg-white rounded p-1 text-xl'>
-        <CiRead />
-         </p>
+          <Link
+            className="text-[--text-color] hover:text-black"
+            to="/"
+          >
+            Gaming /
+          </Link>
+
+          <span className="truncate max-w-[180px] sm:max-w-none">
+            {product.name}
+          </span>
         </div>
-        <h3 className='font-bold mt-2'>Gucci duffle bag </h3>
-        <div className='flex gap-3 font-bold mt-2' >
-          <p className='text-[--alt-text-color]'>$960</p>
-          <p className='text-[--text-color]'><del>$360</del></p>
+      </div>
+
+      {/* Product Details */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 md:mt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14">
+
+          {/* Images */}
+          <div className="flex flex-col-reverse md:flex-row gap-4">
+
+            {/* Thumbnails */}
+            <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-visible">
+              {product.images.map((img, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedImage(index)}
+                  className={`flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-lg bg-[--secondary-color] border-2 transition ${
+                    selectedImage === index
+                      ? "border-black"
+                      : "border-transparent"
+                  }`}
+                >
+                  <img
+                    src={img}
+                    alt={`${product.name} ${index + 1}`}
+                    className="w-full h-full object-contain p-2"
+                  />
+                </button>
+              ))}
+            </div>
+
+            {/* Main Image */}
+            <div className="flex-1 min-h-[300px] md:min-h-[450px] bg-[--secondary-color] rounded-lg flex items-center justify-center">
+              <img
+                src={product.images[selectedImage]}
+                alt={product.name}
+                className="w-full max-w-[500px] h-[320px] sm:h-[400px] object-contain p-6"
+              />
+            </div>
+          </div>
+
+          {/* Product Information */}
+          <div className="w-full">
+
+            <h1 className="text-2xl md:text-3xl font-semibold">
+              {product.name}
+            </h1>
+
+            <p className="text-xl md:text-2xl mt-3">
+              ${product.price}
+            </p>
+
+            {/* Rating */}
+            <div className="flex flex-wrap items-center gap-3 mt-4">
+              <div className="flex items-center gap-1 text-yellow-400">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <FaStar
+                    key={index}
+                    className={
+                      index < product.rating
+                        ? "text-yellow-400"
+                        : "text-gray-300"
+                    }
+                  />
+                ))}
+              </div>
+
+              <span className="text-gray-500 text-sm">
+                ({product.reviews} Reviews)
+              </span>
+            </div>
+
+            {/* Description */}
+            <p className="mt-5 text-gray-600 leading-7">
+              {product.desc}
+            </p>
+
+            <hr className="my-6" />
+
+            {/* Colors */}
+            <div>
+              <p className="font-medium mb-3">Colours:</p>
+
+              <div className="flex gap-3">
+                {product.colors.map((color) => (
+                  <button
+                    key={color}
+                    onClick={() => setSelectedColor(color)}
+                    aria-label={`Select color ${color}`}
+                    className={`w-8 h-8 rounded-full border-2 transition ${
+                      selectedColor === color
+                        ? "border-black scale-110"
+                        : "border-gray-300"
+                    }`}
+                    style={{
+                      backgroundColor: color,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Sizes */}
+            <div className="mt-6">
+              <p className="font-medium mb-3">Size:</p>
+
+              <div className="flex flex-wrap gap-2">
+                {product.sizes.map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`min-w-10 px-4 py-2 rounded border transition ${
+                      selectedSize === size
+                        ? "bg-black text-white border-black"
+                        : "hover:bg-gray-100"
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Quantity + Buttons */}
+            <div className="mt-7 flex flex-col sm:flex-row gap-4">
+
+              <div className="flex items-center border rounded w-fit">
+                <button
+                  onClick={() =>
+                    setQuantity((q) => Math.max(1, q - 1))
+                  }
+                  className="w-10 h-10 hover:bg-gray-100"
+                >
+                  -
+                </button>
+
+                <span className="w-12 text-center">
+                  {quantity}
+                </span>
+
+                <button
+                  onClick={() => setQuantity((q) => q + 1)}
+                  className="w-10 h-10 bg-[--alt-text-color] text-white"
+                >
+                  +
+                </button>
+              </div>
+
+              <button className="flex-1 sm:flex-none bg-[--alt-text-color] text-white px-8 py-2.5 rounded hover:opacity-90 transition">
+                Buy Now
+              </button>
+
+              <button className="border border-black px-6 py-2.5 rounded hover:bg-black hover:text-white transition">
+                <CiHeart className="text-2xl" />
+              </button>
+            </div>
+
+            {/* Delivery */}
+            <div className="mt-8 border border-gray-300 rounded-lg">
+
+              <div className="flex gap-4 p-5">
+                <img
+                  className="w-8 h-8 object-contain"
+                  src={myImage3}
+                  alt="Delivery"
+                />
+
+                <div>
+                  <p className="font-medium">
+                    Free Delivery
+                  </p>
+
+                  <p className="text-sm text-gray-600 mt-1">
+                    Enter your postal code for Delivery Availability
+                  </p>
+                </div>
+              </div>
+
+              <hr />
+
+              <div className="flex gap-4 p-5">
+                <img
+                  className="w-8 h-8 object-contain"
+                  src={myImage4}
+                  alt="Return"
+                />
+
+                <div>
+                  <p className="font-medium">
+                    30-Day Return Guarantee
+                  </p>
+
+                  <p className="text-sm text-gray-600 mt-1">
+                    Free 30 Days Delivery Returns. Details
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
-        <div className='flex gap-3 mt-3 items-center'>
-        <div className='text-yellow-400 flex gap-1'>
-      <FaStar />
-      <FaStar />
-      <FaStar />
-      <FaStar />
-     </div>
-     <p className='text-[--text-color]'>(65)</p>
-   </div>
-      </div>
-      </div>
+      </section>
+
+      {/* Related Products */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 md:mt-24">
+
+        <div className="flex items-center gap-3">
+          <div className="bg-[--alt-text-color] w-4 h-7 rounded" />
+
+          <h2 className="text-lg md:text-xl font-medium">
+            Related Items
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+
+          {relatedProducts.map((item, index) => (
+            <div
+              key={index}
+              className="group relative min-w-0"
+            >
+              {/* Image */}
+              <div className="relative bg-[--secondary-color] h-[250px] rounded-lg overflow-hidden">
+
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-contain p-8"
+                />
+
+                {item.discount && (
+                  <span className="absolute top-3 left-3 bg-[--alt-text-color] text-white text-sm px-2 py-1 rounded">
+                    {item.discount}
+                  </span>
+                )}
+
+                <button className="absolute top-3 right-3 bg-white rounded-full p-2 text-xl hover:bg-gray-100">
+                  <CiHeart />
+                </button>
+
+                <button className="absolute top-14 right-3 bg-white rounded-full p-2 text-xl hover:bg-gray-100">
+                  <CiRead />
+                </button>
+              </div>
+
+              {/* Info */}
+              <h3 className="font-semibold mt-3">
+                {item.name}
+              </h3>
+
+              <div className="flex flex-wrap gap-3 mt-2">
+                <span className="text-[--alt-text-color] font-semibold">
+                  ${item.price}
+                </span>
+
+                {item.oldPrice && (
+                  <span className="text-gray-500">
+                    <del>${item.oldPrice}</del>
+                  </span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2 mt-2">
+
+                <div className="flex gap-1 text-yellow-400">
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                </div>
+
+                <span className="text-gray-500 text-sm">
+                  ({item.reviews})
+                </span>
+              </div>
+            </div>
+          ))}
+
+        </div>
+      </section>
+
+      <Footer />
     </div>
-    <Footer />
-    </div>
-  )
+  );
 }

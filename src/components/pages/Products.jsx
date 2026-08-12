@@ -1,219 +1,230 @@
-import myImage from '../../assets/images/image1.png'
+import myImage from "../../assets/images/image1.png";
+import myImage2 from "../../assets/images/image4.png";
+import myImage3 from "../../assets/images/image2.png";
+import myImage4 from "../../assets/images/image3.png";
+
 import { FaStar } from "react-icons/fa";
-import { CiHeart } from "react-icons/ci";
-import { CiRead } from "react-icons/ci";
-import myImage2 from '../../assets/images/image4.png'
-import myImage3 from '../../assets/images/image2.png'
-import myImage4 from '../../assets/images/image3.png'
-import { useCart } from "../../assets/CartContext";
+import { CiHeart, CiRead } from "react-icons/ci";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { useCart } from "../../assets/CartContext";
 
+export default function Products() {
+  const { addToCart } = useCart();
 
+  const products = [
+    {
+      name: "HAVIT HV-G92 Gamepad",
+      image: myImage,
+      price: 120,
+      oldPrice: 160,
+      discount: "-40%",
+      rating: 5,
+      reviews: 88,
+    },
+    {
+      name: "AK-900 Wired Keyboard",
+      image: myImage2,
+      price: 960,
+      oldPrice: 1160,
+      discount: "-35%",
+      rating: 4,
+      reviews: 75,
+    },
+    {
+      name: "IPS LCD Gaming Monitor",
+      image: myImage3,
+      price: 370,
+      oldPrice: 400,
+      discount: "-30%",
+      rating: 4,
+      reviews: 99,
+    },
+    {
+      name: "S-Series Comfort Chair",
+      image: myImage4,
+      price: 375,
+      oldPrice: 395,
+      discount: "-25%",
+      rating: 4,
+      reviews: 99,
+    },
+  ];
 
+  return (
+    <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-20 2xl:px-32 mt-12 sm:mt-16 lg:mt-20">
+      
+      {/* Title */}
+      <div className="flex items-center gap-3">
+        <div className="bg-[--alt-text-color] w-4 h-6 rounded"></div>
 
-export default function Products(){
-  const {addToCart} = useCart();
-  
-  return(
-    <div className="ml-32 mt-20">
-      <div className="title flex gap-3 ">
-      <div className="bg-[--alt-text-color] w-4 h-6 rounded"></div>
-      <h2 className="text-[--alt-text-color] font-medium">Today’s</h2>
+        <h2 className="text-[--alt-text-color] font-medium">
+          Today’s
+        </h2>
       </div>
-      <div className="flex items-baseline gap-24 flex-wrap">
-        <div>
-        <h2 className="font-medium text-2xl mt-5">Flash Sales</h2>
+
+      {/* Heading + Countdown */}
+      <div className="mt-5 flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-16">
+        
+        <h2 className="font-medium text-2xl sm:text-3xl">
+          Flash Sales
+        </h2>
+
+        <div className="flex items-center gap-2 sm:gap-4">
+          
+          {/* Days */}
+          <div className="text-center">
+            <h3 className="text-xs sm:text-sm">Days</h3>
+            <p className="font-bold text-xl sm:text-2xl">03</p>
+          </div>
+
+          <span className="text-[--alt-text-color] text-2xl sm:text-4xl">
+            :
+          </span>
+
+          {/* Hours */}
+          <div className="text-center">
+            <h3 className="text-xs sm:text-sm">Hours</h3>
+            <p className="font-bold text-xl sm:text-2xl">23</p>
+          </div>
+
+          <span className="text-[--alt-text-color] text-2xl sm:text-4xl">
+            :
+          </span>
+
+          {/* Minutes */}
+          <div className="text-center">
+            <h3 className="text-xs sm:text-sm">Minutes</h3>
+            <p className="font-bold text-xl sm:text-2xl">19</p>
+          </div>
+
+          <span className="text-[--alt-text-color] text-2xl sm:text-4xl">
+            :
+          </span>
+
+          {/* Seconds */}
+          <div className="text-center">
+            <h3 className="text-xs sm:text-sm">Seconds</h3>
+            <p className="font-bold text-xl sm:text-2xl">56</p>
+          </div>
         </div>
-        <div className="parent flex gap-2">
-        <div className="flex gap-2">
-        <div>
-        <h3>Days</h3>
-        <p className="font-bold text-xl">03</p>
-        </div>
-        <p className="text-[--alt-text-color] text-4xl">:</p>
-        </div>
-        <div className="flex gap-2">
-       <div>
-       <h3>Hours</h3>
-       <p className="font-bold text-xl">23</p>
-       </div>
-       <p className="text-[--alt-text-color] text-4xl">:</p>
-       </div>
-       <div className="flex gap-2">
-       <div>
-       <h3>Minutes</h3>
-       <p className="font-bold text-xl">19</p>
-       </div>
-       <p className="text-[--alt-text-color] text-4xl">:</p>
-       </div>
-       <div className="flex gap-2">
-       <div>
-       <h3>Seconds</h3>
-       <p className="font-bold text-xl">56</p>
-       </div>
-       </div>
       </div>
-      </div>
-      <div className="card-list mt-5 flex gap-5 flex-wrap">
-        <div className="card w-fit relative group overflow-hidden rounded-lg shadow p-4">
-       <div className='relative'>
-          <img className='p-8 bg-[--secondary-color] object-cover rounded-lg ' src={myImage} alt="" />
-          <p className='absolute top-4 left-3 bg-[--alt-text-color] text-white rounded p-1'>-40%</p>
-          <p className='absolute top-4 left-52 bg-white rounded p-1 text-xl'>
-          <CiHeart />
-          </p>
-          <p className='absolute bottom-40 left-52  bg-white rounded p-1 text-xl'>
-          <CiRead />
-           </p>
-          </div>
-          <h3 className='font-bold mt-2'>HAVIT HV-G92 Gamepad</h3>
-          <div className='flex gap-3 font-bold mt-2' >
-            <p className='text-[--alt-text-color]'>$120</p>
-            <p className='text-[--text-color]'><del>$160</del></p>
-          </div>
-          <div className='flex gap-3 mt-3 items-center'>
-          <div className='text-yellow-400 flex gap-1'>
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-          </div>
+
+      {/* Products */}
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        
+        {products.map((product) => (
           <div
-    onClick={() => addToCart("HAVIT HV-G92 Gamepad", 200, myImage)}
-    className="
-      flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-      absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-      group-hover:opacity-100 group-hover:translate-y-0
-      transition-all duration-300 cursor-pointer
-    "
-  >
-    <MdOutlineShoppingCart />
-    Add To Cart
-  </div>
-          <p className='text-[--text-color]'>(88)</p>
-     </div>
-        </div>
+            key={product.name}
+            className="group relative overflow-hidden rounded-lg shadow p-4 bg-white"
+          >
+            
+            {/* Image */}
+            <div className="relative h-[230px] sm:h-[245px] bg-[--secondary-color] rounded-lg flex items-center justify-center overflow-hidden">
+              
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-full object-contain p-8 transition-transform duration-300 group-hover:scale-105"
+              />
 
+              {/* Discount */}
+              <p className="absolute top-3 left-3 bg-[--alt-text-color] text-white rounded px-2 py-1 text-sm">
+                {product.discount}
+              </p>
 
-      <div className="card w-fit relative group overflow-hidden rounded-lg shadow p-4">
-      <div className='relative bg-[--secondary-color] h-[245px]'>
-         <img className='p-10  object-cover rounded-lg ' src={myImage2} alt="" />
-         <p className='absolute top-4 left-3 bg-[--alt-text-color] text-white rounded p-1'>-35%</p>
-         <p className='absolute top-4 left-56 bg-white rounded p-1 text-xl'>
-         <CiHeart />
-         </p>
-         <p className='absolute bottom-40 left-56  bg-white rounded p-1 text-xl'>
-         <CiRead />
-          </p>
-         </div>
-         <h3 className='font-bold mt-2'>AK-900 Wired Keyboard</h3>
-         <div className='flex gap-3 font-bold mt-2' >
-           <p className='text-[--alt-text-color]'>$960</p>
-           <p className='text-[--text-color]'><del>$1160</del></p>
-         </div>
-         <div className='flex gap-3 mt-3 items-center'>
-         <div className='text-yellow-400 flex gap-1'>
-       <FaStar />
-       <FaStar />
-       <FaStar />
-       <FaStar />
+              {/* Heart */}
+              <button
+                className="absolute top-3 right-3 bg-white rounded p-2 text-xl hover:text-[--alt-text-color] transition"
+              >
+                <CiHeart />
+              </button>
+
+              {/* Read */}
+              <button
+                className="absolute top-14 right-3 bg-white rounded p-2 text-xl hover:text-[--alt-text-color] transition"
+              >
+                <CiRead />
+              </button>
+            </div>
+
+            {/* Product Name */}
+            <h3 className="font-bold mt-3 truncate">
+              {product.name}
+            </h3>
+
+            {/* Price */}
+            <div className="flex gap-3 font-bold mt-2">
+              <p className="text-[--alt-text-color]">
+                ${product.price}
+              </p>
+
+              <p className="text-[--text-color]">
+                <del>${product.oldPrice}</del>
+              </p>
+            </div>
+
+            {/* Rating */}
+            <div className="flex gap-3 mt-3 items-center">
+              
+              <div className="text-yellow-400 flex gap-1">
+                {[...Array(product.rating)].map((_, index) => (
+                  <FaStar key={index} />
+                ))}
+              </div>
+
+              <p className="text-[--text-color] text-sm">
+                ({product.reviews})
+              </p>
+            </div>
+
+            {/* Add To Cart */}
+            <button
+              onClick={() =>
+                addToCart(
+                  product.name,
+                  product.price,
+                  product.image
+                )
+              }
+              className="
+                absolute bottom-0 left-0 w-full
+                flex gap-2
+                bg-black text-white
+                justify-center items-center
+                py-3 rounded-b-lg
+                opacity-0 translate-y-full
+                group-hover:opacity-100
+                group-hover:translate-y-0
+                transition-all duration-300
+                cursor-pointer
+              "
+            >
+              <MdOutlineShoppingCart />
+              Add To Cart
+            </button>
+          </div>
+        ))}
       </div>
-    <div
-    onClick={() => addToCart("AK-900 Wired Keyboard", 960, myImage2)}
-    className="
-      flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-      absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-      group-hover:opacity-100 group-hover:translate-y-0
-      transition-all duration-300 cursor-pointer
-    "
-  >
-    <MdOutlineShoppingCart />
-    Add To Cart
-  </div>
-      <p className='text-[--text-color]'>(75)</p>
-    </div>
-       </div>
 
+      {/* Button */}
+      <button
+        className="
+          bg-[--alt-text-color]
+          text-white
+          px-6 py-3
+          rounded
+          mt-12 sm:mt-16 lg:mt-20
+          block mx-auto
+          w-full sm:w-60
+          hover:opacity-90
+          transition
+        "
+      >
+        View All Products
+      </button>
 
-       <div className="card w-fit relative group overflow-hidden rounded-lg shadow p-4">
-      <div className='relative h-[245px]  bg-[--secondary-color]'>
-         <img className='p-11 object-cover rounded-lg' src={myImage3} alt="" />
-         <p className='absolute top-3 left-3 bg-[--alt-text-color] text-white rounded p-1'>-30%</p>
-         <p className='absolute top-4 left-56 bg-white rounded p-1 text-xl'>
-         <CiHeart />
-         </p>
-         <p className='absolute bottom-40 left-56  bg-white rounded p-1 text-xl'>
-         <CiRead />
-          </p>
-         </div>
-         <h3 className='font-bold mt-2'>IPS LCD Gaming Monitor</h3>
-         <div className='flex gap-3 font-bold mt-2' >
-           <p className='text-[--alt-text-color]'>$370</p>
-           <p className='text-[--text-color]'><del>$400</del></p>
-         </div>
-         <div className='flex gap-3 mt-3 items-center'>
-         <div className='text-yellow-400 flex gap-1'>
-       <FaStar />
-       <FaStar />
-       <FaStar />
-       <FaStar />
-      </div>
-    <div
-    onClick={() => addToCart("AK-900 Wired Keyboard", 370, myImage3)}
-    className="
-      flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-      absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-      group-hover:opacity-100 group-hover:translate-y-0
-      transition-all duration-300 cursor-pointer
-    ">
-    <MdOutlineShoppingCart />
-    Add To Cart
-  </div>
-      <p className='text-[--text-color]'>(99)</p>
-    </div>
-       </div>
-
-       <div className="card w-fit relative group overflow-hidden rounded-lg shadow p-4">
-     <div className='relative h-[245px]  bg-[--secondary-color] '>
-        <img className='p-12 object-cover rounded-lg' src={myImage4} alt="" />
-        <p className='absolute top-3 left-3 bg-[--alt-text-color] text-white rounded p-1'>-25%</p>
-        <p className='absolute top-4 left-40 bg-white rounded p-1 text-xl'>
-        <CiHeart />
-        </p>
-        <p className='absolute bottom-40 left-40  bg-white rounded p-1 text-xl'>
-        <CiRead />
-         </p>
-        </div>
-        <h3 className='font-bold mt-2'>S-Series Comfort Chair </h3>
-        <div className='flex gap-3 font-bold mt-2' >
-          <p className='text-[--alt-text-color]'>$375</p>
-          <p className='text-[--text-color]'><del>$395</del></p>
-        </div>
-        <div className='flex gap-3 mt-3 items-center'>
-        <div className='text-yellow-400 flex gap-1'>
-      <FaStar />
-      <FaStar />
-      <FaStar />
-      <FaStar />
-     </div>
-    <div
-    onClick={() => addToCart("S-Series Comfort Chair", 375, myImage4)}
-    className="
-      flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-      absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-      group-hover:opacity-100 group-hover:translate-y-0
-      transition-all duration-300 cursor-pointer
-    ">
-    <MdOutlineShoppingCart />
-    Add To Cart
-  </div>
-     <p className='text-[--text-color]'>(99)</p>
-   </div>
-      </div>
-      </div>
-      <button className='bg-[--alt-text-color] text-white p-2 rounded mt-20 flex justify-center items-center m-auto w-60'>View All Products</button>
-      <hr className='mt-10' />
-    </div>
-  )
+      <hr className="mt-10" />
+    </section>
+  );
 }
+

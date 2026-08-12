@@ -1,363 +1,467 @@
 import { FaStar } from "react-icons/fa";
-import { CiHeart } from "react-icons/ci";
-import { CiRead } from "react-icons/ci";
-import myImage from '../../assets/images/dog.png'
-import myImage2 from '../../assets/images/camera.png'
-import myImage3 from '../../assets/images/ibade.png'
-import myImage4 from '../../assets/images/craeem.png'
-import myImage5 from '../../assets/images/car.png'
-import myImage6 from '../../assets/images/Copa.png'
-import myImage7 from '../../assets/images/GP1.png'
-import myImage8 from '../../assets/images/jack.png'
-import { useCart } from "../../assets/CartContext";
+import { CiHeart, CiRead } from "react-icons/ci";
 import { MdOutlineShoppingCart } from "react-icons/md";
 
+import { useCart } from "../../assets/CartContext";
 
-export default function Explore(){
-  const {addToCart} = useCart();
-  
-  return(
-    <div className="ml-32 mt-16">
-    <div className="title flex gap-3 ">
-  <div className="bg-[--alt-text-color] w-4 h-6 rounded"></div>
-  <h2 className="text-[--alt-text-color] font-medium">Our Products</h2>
-  </div>
-  <div>
-  <h2 className="text-2xl font-medium mt-5">Explore Our Products</h2>
-  </div>
-  <div className="cards-list mt-14 flex gap-5 flex-wrap ">
-  <div className="card w-fit relative group overflow-hidden rounded-lg shadow p-4">
-    <div className='relative h-[245px] w-[270px] bg-[--secondary-color]'>
-       <img className='p-12 object-cover rounded-lg' src={myImage} alt="" />
-       <p className='absolute top-4 left-56 bg-white rounded p-1 text-xl'>
-       <CiHeart />
-       </p>
-       <p className='absolute bottom-40 left-56  bg-white rounded p-1 text-xl'>
-       <CiRead />
-        </p>
-       </div>
-       <div>
-       <h3 className='font-bold mt-2 '>Breed Dry Dog Food</h3>
-       <div className='flex gap-3 font-bold mt-2 items-center' >
-         <p className='text-[--alt-text-color]'>$100</p>
-       <div className='flex gap-3  items-center'>
-       <div className='text-yellow-400 flex gap-1'>
-     <FaStar />
-     <FaStar />
-     <FaStar />
-     <FaStar />
-     <p className="text-gray-500 flex">
-     <FaStar />
-     <FaStar />
-     </p>
-    </div>
-    <div
-   onClick={() => addToCart("Breed Dry Dog Food",100, myImage)}
-   className="
-     flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-     absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-     group-hover:opacity-100 group-hover:translate-y-0
-     transition-all duration-300 cursor-pointer">
-   <MdOutlineShoppingCart />
-   Add To Cart
- </div>
-    <p className='text-[--text-color]'>(99)</p>
-  </div>
-  </div>
-     </div>
-     </div>
+import dogImage from "../../assets/images/dog.png";
+import cameraImage from "../../assets/images/camera.png";
+import laptopImage from "../../assets/images/ibade.png";
+import jacketImage from "../../assets/images/craeem.png";
+import carImage from "../../assets/images/car.png";
+import shoesImage from "../../assets/images/Copa.png";
+import gamepadImage from "../../assets/images/GP1.png";
+import gamepadImage2 from "../../assets/images/jack.png";
 
-     <div className="card w-fit relative group overflow-hidden rounded-lg shadow ">
-   <div className='relative h-[245px] w-[280px] bg-[--secondary-color]'>
-      <img className='p-12  object-cover rounded-lg' src={myImage2} alt="" />
-      <p className='absolute top-4 left-56 bg-white rounded p-1 text-xl'>
-      <CiHeart />
-      </p>
-      <p className='absolute bottom-40 left-56  bg-white rounded p-1 text-xl'>
-      <CiRead />
-       </p>
+
+// ============================
+// Products Data
+// ============================
+
+const products = [
+  {
+    id: 1,
+    name: "Breed Dry Dog Food",
+    price: 100,
+    image: dogImage,
+    rating: 4,
+    reviews: 99,
+  },
+  {
+    id: 2,
+    name: "CANON EOS DSLR Camera",
+    price: 360,
+    image: cameraImage,
+    rating: 4,
+    reviews: 95,
+  },
+  {
+    id: 3,
+    name: "ASUS FHD Gaming Laptop",
+    price: 700,
+    image: laptopImage,
+    rating: 5,
+    reviews: 325,
+  },
+  {
+    id: 4,
+    name: "Quilted Satin Jacket",
+    price: 660,
+    image: jacketImage,
+    rating: 4,
+    reviews: 145,
+  },
+  {
+    id: 5,
+    name: "Kids Electric Car",
+    price: 960,
+    image: carImage,
+    rating: 5,
+    reviews: 65,
+    isNew: true,
+    colors: ["#166534", "#db4444"],
+  },
+  {
+    id: 6,
+    name: "Jr. Zoom Soccer Cleats",
+    price: 1160,
+    image: shoesImage,
+    rating: 5,
+    reviews: 35,
+    colors: ["#facc15", "#db4444"],
+  },
+  {
+    id: 7,
+    name: "GP11 Shooter USB Gamepad",
+    price: 660,
+    image: gamepadImage,
+    rating: 5,
+    reviews: 55,
+    isNew: true,
+    colors: ["#ffffff", "#db4444"],
+  },
+  {
+    id: 8,
+    name: "GP11 Shooter USB Gamepad",
+    price: 660,
+    image: gamepadImage2,
+    rating: 5,
+    reviews: 55,
+    isNew: true,
+    colors: ["#365314", "#db4444"],
+  },
+];
+
+
+// ============================
+// Rating Component
+// ============================
+
+function Rating({ rating, reviews }) {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="flex gap-1 text-yellow-400">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <FaStar
+            key={star}
+            className={
+              star <= rating
+                ? "text-yellow-400"
+                : "text-gray-300"
+            }
+          />
+        ))}
       </div>
-      <div>
-      <h3 className='font-bold mt-2 '>CANON EOS DSLR Camera</h3>
-      <div className='flex gap-3 font-bold mt-2 items-center' >
-        <p className='text-[--alt-text-color]'>$360</p>
-      <div className='flex gap-3  items-center'>
-      <div className='text-yellow-400 flex gap-1'>
-    <FaStar />
-    <FaStar />
-    <FaStar />
-    <FaStar />
-    <p className="text-gray-500 flex">
-    <FaStar />
-    </p>
-   </div>
-  <div
-   onClick={() => addToCart("CANON EOS DSLR Camera",360, myImage2)}
-   className="
-     flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-     absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-     group-hover:opacity-100 group-hover:translate-y-0
-     transition-all duration-300 cursor-pointer">
-   <MdOutlineShoppingCart />
-   Add To Cart
- </div>
-   <p className='text-[--text-color]'>(95)</p>
- </div>
- </div>
-    </div>
-    </div>
 
-    <div className="card w-fit relative group overflow-hidden rounded-lg shadow">
-   <div className='relative h-[245px]  bg-[--secondary-color]'>
-      <img className='p-12 w-[280px] object-cover rounded-lg' src={myImage3} alt="" />
-      <p className='absolute top-4 left-56 bg-white rounded p-1 text-xl'>
-      <CiHeart />
-      </p>
-      <p className='absolute bottom-40 left-56  bg-white rounded p-1 text-xl'>
-      <CiRead />
-       </p>
-      </div>
-      <div>
-      <h3 className='font-bold mt-2 '>ASUS FHD Gaming Laptop</h3>
-      <div className='flex gap-3 font-bold mt-2 items-center' >
-        <p className='text-[--alt-text-color]'>$700</p>
-      <div className='flex gap-3  items-center'>
-      <div className='text-yellow-400 flex gap-1'>
-    <FaStar />
-    <FaStar />
-    <FaStar />
-    <FaStar />
-    <FaStar />
-   </div>
-   <p className='text-[--text-color]'>(325)</p>
- </div>
-  <div
-  onClick={() => addToCart("ASUS FHD Gaming Laptop",700, myImage3)}
-  className="
-    flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-    absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-    group-hover:opacity-100 group-hover:translate-y-0
-    transition-all duration-300 cursor-pointer">
-  <MdOutlineShoppingCart />
-  Add To Cart
-</div>
- </div>
+      <span className="text-sm text-[--text-color]">
+        ({reviews})
+      </span>
     </div>
-    </div>
+  );
+}
 
-    <div className="card w-fit relative group overflow-hidden rounded-lg shadow">
-  <div className='relative h-[245px]  bg-[--secondary-color]'>
-     <img className='p-12 w-[280px] object-cover rounded-lg' src={myImage4} alt="" />
-     <p className='absolute top-4 left-60 bg-white rounded p-1 text-xl'>
-     <CiHeart />
-     </p>
-     <p className='absolute bottom-40 left-60  bg-white rounded p-1 text-xl'>
-     <CiRead />
-      </p>
-     </div>
-     <div>
-     <h3 className='font-bold mt-2 '>Quilted Satin Jacket </h3>
-     <div className='flex gap-3 font-bold mt-2 items-center' >
-       <p className='text-[--alt-text-color]'>$660</p>
-     <div className='flex gap-3  items-center'>
-     <div className='text-yellow-400 flex gap-1'>
-   <FaStar />
-   <FaStar />
-   <FaStar />
-   <FaStar />
-   <p className="text-gray-500 flex">
- <FaStar />
- </p>
-  </div>
+
+// ============================
+// Product Card
+// ============================
+
+function ProductCard({ product, addToCart }) {
+  const {
+    name,
+    price,
+    image,
+    rating,
+    reviews,
+    isNew,
+    colors,
+  } = product;
+
+  return (
     <div
-   onClick={() => addToCart("Quilted Satin Jacket",660, myImage4)}
-   className="
-     flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-     absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-     group-hover:opacity-100 group-hover:translate-y-0
-     transition-all duration-300 cursor-pointer">
-   <MdOutlineShoppingCart />
-   Add To Cart
- </div>
-  <p className='text-[--text-color]'>(145)</p>
-</div>
-</div>
-   </div>
-   </div>
+      className="
+        group
+        relative
+        overflow-hidden
+        rounded-lg
+        shadow
+        bg-white
+        w-full
+        transition
+        duration-300
+        hover:-translate-y-1
+      "
+    >
 
-   <div className="card w-fit relative group overflow-hidden rounded-lg shadow">
-  <div className='relative h-[245px]  bg-[--secondary-color]'>
-     <img className='p-12  object-cover rounded-lg' src={myImage5} alt="" />
-     <p className='absolute top-4 left-3 bg-[--secand-text-color] text-white rounded p-1'>New</p>
-     <p className='absolute top-4 left-60 bg-white rounded p-1 text-xl'>
-     <CiHeart />
-     </p>
-     <p className='absolute bottom-40 left-60  bg-white rounded p-1 text-xl'>
-     <CiRead />
-      </p>
-     </div>
-     <div>
-     <h3 className='font-bold mt-2 '>Kids Electric Car </h3>
-     <div className='flex gap-3 font-bold mt-2 items-center' >
-       <p className='text-[--alt-text-color]'>$960</p>
-     <div className='flex gap-3  items-center'>
-     <div className='text-yellow-400 flex gap-1'>
-   <FaStar />
-   <FaStar />
-   <FaStar />
-   <FaStar />
-   <FaStar />
-  </div>
-  <p className='text-[--text-color]'>(65)</p>
-</div>
-  <div
-   onClick={() => addToCart("Kids Electric Car",960, myImage5)}
-   className="
-     flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-     absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-     group-hover:opacity-100 group-hover:translate-y-0
-     transition-all duration-300 cursor-pointer">
-   <MdOutlineShoppingCart />
-   Add To Cart
- </div>
-</div>
-<div className="flex gap-3 mt-3">
-  <p className="w-5 h-5 rounded-lg bg-[--third-color] border-4 border-black"></p>
-  <p className="bg-[--alt-text-color] w-5 h-5 rounded-lg"></p>
-</div>
-  </div>
-  </div>
+      {/* Image Container */}
+      <div
+        className="
+          relative
+          w-full
+          h-[245px]
+          bg-[--secondary-color]
+          overflow-hidden
+        "
+      >
 
-  <div className="card w-fit relative group overflow-hidden rounded-lg shadow">
-  <div className='relative h-[245px]  bg-[--secondary-color]'>
-     <img className='p-12 object-cover rounded-lg' src={myImage6} alt="" />
-     <p className='absolute top-4 left-60 bg-white rounded p-1 text-xl'>
-     <CiHeart />
-     </p>
-     <p className='absolute bottom-40 left-60  bg-white rounded p-1 text-xl'>
-     <CiRead />
-      </p>
-     </div>
-     <div>
-     <h3 className='font-bold mt-2 '>Jr. Zoom Soccer Cleats </h3>
-     <div className='flex gap-3 font-bold mt-2 items-center' >
-       <p className='text-[--alt-text-color]'>$1160</p>
-     <div className='flex gap-3  items-center'>
-     <div className='text-yellow-400 flex gap-1'>
-   <FaStar />
-   <FaStar />
-   <FaStar />
-   <FaStar />
-   <FaStar />
-  </div>
-  <p className='text-[--text-color]'>(35)</p>
-</div>
-  <div
-   onClick={() => addToCart("Jr. Zoom Soccer Cleats",1160, myImage6)}
-   className="
-     flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-     absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-     group-hover:opacity-100 group-hover:translate-y-0
-     transition-all duration-300 cursor-pointer">
-   <MdOutlineShoppingCart />
-   Add To Cart
- </div>
-</div>
-<div className="flex gap-3 mt-3">
-  <p className="w-5 h-5 rounded-lg bg-yellow-400 border-4 border-black"></p>
-  <p className="bg-[--alt-text-color] w-5 h-5 rounded-lg"></p>
-</div>
-  </div>
-  </div>
+        {/* Product Image */}
+        <img
+          src={image}
+          alt={name}
+          className="
+            w-full
+            h-full
+            object-contain
+            p-8
+            transition
+            duration-300
+            group-hover:scale-105
+          "
+        />
 
-  <div className="card w-fit relative group overflow-hidden rounded-lg shadow">
-  <div className='relative h-[245px]  bg-[--secondary-color]'>
-     <img className='p-12 object-cover rounded-lg' src={myImage7} alt="" />
-     <p className='absolute top-4 left-3 bg-[--secand-text-color] text-white rounded p-1'>New</p>
-     <p className='absolute top-4 left-60 bg-white rounded p-1 text-xl'>
-     <CiHeart />
-     </p>
-     <p className='absolute bottom-40 left-60  bg-white rounded p-1 text-xl'>
-     <CiRead />
-      </p>
-     </div>
-     <div>
-     <h3 className='font-bold mt-2 '>GP11 Shooter USB Gamepad </h3>
-     <div className='flex gap-3 font-bold mt-2 items-center' >
-       <p className='text-[--alt-text-color]'>$660</p>
-     <div className='flex gap-3  items-center'>
-     <div className='text-yellow-400 flex gap-1'>
-   <FaStar />
-   <FaStar />
-   <FaStar />
-   <FaStar />
-   <FaStar />
-  </div>
-  <p className='text-[--text-color]'>(55)</p>
-</div>
-  <div
-   onClick={() => addToCart("GP11 Shooter USB Gamepad",660, myImage7)}
-   className="
-     flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-     absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-     group-hover:opacity-100 group-hover:translate-y-0
-     transition-all duration-300 cursor-pointer">
-   <MdOutlineShoppingCart />
-   Add To Cart
- </div>
-</div>
-<div className="flex gap-3 mt-3">
-  <p className="w-5 h-5 rounded-lg bg-white  border-4 border-black"></p>
-  <p className="bg-[--alt-text-color] w-5 h-5 rounded-lg"></p>
-</div>
-  </div>
-  </div>
 
-  <div className="card w-fit relative group overflow-hidden rounded-lg shadow">
-  <div className='relative h-[245px]  bg-[--secondary-color]'>
-     <img className='p-12 object-cover rounded-lg' src={myImage8} alt="" />
-     <p className='absolute top-4 left-3 bg-[--secand-text-color] text-white rounded p-1'>New</p>
-     <p className='absolute top-4 left-60 bg-white rounded p-1 text-xl'>
-     <CiHeart />
-     </p>
-     <p className='absolute bottom-40 left-60  bg-white rounded p-1 text-xl'>
-     <CiRead />
-      </p>
-     </div>
-     <div>
-     <h3 className='font-bold mt-2 '>GP11 Shooter USB Gamepad </h3>
-     <div className='flex gap-3 font-bold mt-2 items-center' >
-       <p className='text-[--alt-text-color]'>$660</p>
-     <div className='flex gap-3  items-center'>
-     <div className='text-yellow-400 flex gap-1'>
-   <FaStar />
-   <FaStar />
-   <FaStar />
-   <FaStar />
-   <FaStar />
-  </div>
-  <p className='text-[--text-color]'>(55)</p>
-</div>
-  <div
-   onClick={() => addToCart("GP11 Shooter USB Gamepad",660, myImage8)}
-   className="
-     flex gap-2 bg-black text-white justify-center items-center py-2 rounded 
-     absolute bottom-0 left-0 w-full opacity-0 translate-y-6
-     group-hover:opacity-100 group-hover:translate-y-0
-     transition-all duration-300 cursor-pointer">
-   <MdOutlineShoppingCart />
-   Add To Cart
- </div>
-</div>
-<div className="flex gap-3 mt-3">
-  <p className="w-5 h-5 rounded-lg bg-lime-800  border-4 border-black"></p>
-  <p className="bg-[--alt-text-color] w-5 h-5 rounded-lg"></p>
-</div>
-  </div>
-  </div>
-  </div>
-  <button className='bg-[--alt-text-color] text-white p-2 rounded mt-20 flex justify-center items-center m-auto w-60'>View All Products</button>
+        {/* New Badge */}
+        {isNew && (
+          <span
+            className="
+              absolute
+              top-3
+              left-3
+              bg-[--secand-text-color]
+              text-white
+              text-sm
+              px-3
+              py-1
+              rounded
+            "
+          >
+            New
+          </span>
+        )}
+
+
+        {/* Heart + Read */}
+        <div
+          className="
+            absolute
+            top-3
+            right-3
+            flex
+            flex-col
+            gap-2
+          "
+        >
+
+          <button
+            type="button"
+            aria-label={`Add ${name} to wishlist`}
+            className="
+              bg-white
+              rounded-full
+              p-2
+              text-xl
+              shadow-sm
+              transition
+              hover:bg-gray-100
+            "
+          >
+            <CiHeart />
+          </button>
+
+          <button
+            type="button"
+            aria-label={`View ${name}`}
+            className="
+              bg-white
+              rounded-full
+              p-2
+              text-xl
+              shadow-sm
+              transition
+              hover:bg-gray-100
+            "
+          >
+            <CiRead />
+          </button>
+
+        </div>
+
+
+        {/* Add To Cart */}
+        <button
+          type="button"
+          onClick={() =>
+            addToCart(name, price, image)
+          }
+          className="
+            absolute
+            bottom-0
+            left-0
+            w-full
+            flex
+            gap-2
+            justify-center
+            items-center
+            bg-black
+            text-white
+            py-3
+            translate-y-0
+            md:translate-y-full
+            md:opacity-0
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            transition-all
+            duration-300
+          "
+        >
+          <MdOutlineShoppingCart size={20} />
+          Add To Cart
+        </button>
+
+      </div>
+
+
+      {/* Product Information */}
+      <div className="p-4">
+
+        <h3
+          className="
+            font-bold
+            text-base
+            min-h-[24px]
+            truncate
+          "
+          title={name}
+        >
+          {name}
+        </h3>
+
+
+        {/* Price + Rating */}
+        <div
+          className="
+            flex
+            flex-wrap
+            items-center
+            justify-between
+            gap-2
+            mt-3
+          "
+        >
+
+          <span
+            className="
+              text-[--alt-text-color]
+              font-bold
+            "
+          >
+            ${price}
+          </span>
+
+          <Rating
+            rating={rating}
+            reviews={reviews}
+          />
+
+        </div>
+
+
+        {/* Colors */}
+        {colors && (
+          <div className="flex gap-2 mt-3">
+
+            {colors.map((color, index) => (
+              <span
+                key={index}
+                className={`
+                  w-5
+                  h-5
+                  rounded-full
+                  border
+                  ${index === 0 ? "border-black border-2" : "border-transparent"}
+                `}
+                style={{
+                  backgroundColor: color,
+                }}
+              />
+            ))}
+
+          </div>
+        )}
+
+      </div>
 
     </div>
-  )
+  );
+}
+
+
+// ============================
+// Explore Component
+// ============================
+
+export default function Explore() {
+  const { addToCart } = useCart();
+
+  return (
+    <section
+      className="
+        w-full
+        px-4
+        sm:px-6
+        md:px-10
+        lg:px-16
+        xl:px-20
+        mt-12
+        md:mt-16
+        pb-16
+      "
+    >
+
+      {/* Section Title */}
+      <div className="flex items-center gap-3">
+
+        <div
+          className="
+            bg-[--alt-text-color]
+            w-4
+            h-6
+            rounded
+          "
+        />
+
+        <h2
+          className="
+            text-[--alt-text-color]
+            font-medium
+          "
+        >
+          Our Products
+        </h2>
+
+      </div>
+
+
+      {/* Main Title */}
+      <h2
+        className="
+          text-2xl
+          sm:text-3xl
+          font-medium
+          mt-5
+        "
+      >
+        Explore Our Products
+      </h2>
+
+
+      {/* Products */}
+      <div
+        className="
+          mt-10
+          md:mt-14
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          lg:grid-cols-3
+          xl:grid-cols-4
+          gap-5
+        "
+      >
+
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            addToCart={addToCart}
+          />
+        ))}
+
+      </div>
+
+
+      {/* View All Button */}
+      <div className="flex justify-center mt-12 md:mt-20">
+
+        <button
+          type="button"
+          className="
+            bg-[--alt-text-color]
+            text-white
+            px-6
+            py-3
+            rounded
+            w-full
+            sm:w-60
+            transition
+            hover:opacity-90
+            active:scale-95
+          "
+        >
+          View All Products
+        </button>
+
+      </div>
+
+    </section>
+  );
 }
