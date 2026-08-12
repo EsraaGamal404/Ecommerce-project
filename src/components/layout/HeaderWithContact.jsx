@@ -1,9 +1,13 @@
+
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router"; 
+import { Link } from "react-router";
 import { CiSearch, CiHeart, CiStar, CiMenuFries } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
-import { MdAccountCircle, MdOutlineRestaurantMenu } from "react-icons/md";
+import {
+  MdAccountCircle,
+  MdOutlineRestaurantMenu,
+} from "react-icons/md";
 import { FaCalendar } from "react-icons/fa";
 import { ImCancelCircle } from "react-icons/im";
 import { IoIosLogOut } from "react-icons/io";
@@ -11,167 +15,346 @@ import { useCart } from "../../assets/CartContext";
 
 export default function HeaderWithAccount() {
   const { t, i18n } = useTranslation();
-  const [openMobileMenu, setOpenMobileMenu] = useState(false); 
+
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [openAccount, setOpenAccount] = useState(false);
 
   const { count } = useCart();
 
+  // تغيير اتجاه الصفحة حسب اللغة
   useEffect(() => {
-    const currentLang = i18n.language;
-    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir =
+      i18n.language === "ar" ? "rtl" : "ltr";
   }, [i18n.language]);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
 
+  const closeMobileMenu = () => {
+    setOpenMobileMenu(false);
+  };
+
   return (
-    <section>
-      <div className="bg-black w-full p-2 flex flex-col md:flex-row items-center">
-        <div className="flex flex-1 justify-center">
-          <h1 className="text-[--title-color] flex gap-3 font-thin items-center">
+    <header className="w-full bg-white">
+      {/* ================= SALE BAR ================= */}
+      <div className="bg-black w-full px-4 py-2">
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2">
+          <h1 className="text-[--title-color] text-sm sm:text-base flex items-center gap-2 text-center">
             {t("saleBanner")}
-            <strong className="text-white font-bold">{t("ShopNow")}</strong>
+
+            <strong className="text-white font-bold">
+              {t("ShopNow")}
+            </strong>
           </h1>
-        </div>
-        <div className="flex flex-col md:flex-row justify-center items-center gap-2 md:mr-10">
-          <div className="flex items-center justify-end mt-2 md:mt-0 gap-2">
-            <select
-              className="bg-black text-[--title-color] outline-none p-1 rounded"
-              onChange={(e) => changeLanguage(e.target.value)}
-              value={i18n.language}
-            >
-              <option value="ar">العربية</option>
-              <option value="en">English</option>
-            </select>
-          </div>
+
+          {/* Language */}
+          <select
+            className="bg-black text-[--title-color] outline-none text-sm cursor-pointer"
+            onChange={(e) => changeLanguage(e.target.value)}
+            value={i18n.language}
+          >
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+          </select>
         </div>
       </div>
 
-     
-      <div className="container mx-auto px-4 mt-6">
-        <div className="flex justify-between items-center">
-          <Link className="font-bold text-2xl" to="/">Exclusive</Link>
+      {/* ================= HEADER ================= */}
+      <div className="container mx-auto px-4 py-5">
+        <div className="flex items-center justify-between gap-4">
 
-          <button
-            className="md:hidden text-3xl"
-            onClick={() => setOpenMobileMenu(!openMobileMenu)}
+          {/* Logo */}
+          <Link
+            to="/"
+            className="font-bold text-xl sm:text-2xl whitespace-nowrap"
           >
-            {openMobileMenu ? <MdOutlineRestaurantMenu /> : <CiMenuFries />}
-          </button>
-          <nav
-            className={`absolute md:static bg-white w-full md:w-auto left-0 shadow-md md:shadow-none transition-all duration-300 md:flex md:items-center md:gap-10 px-6 py-4 md:p-0 ${
-              openMobileMenu ? "top-40" : "top-[-500px]"
-            }`}
-          >
-            <ul className="md:flex gap-10">
+            Exclusive
+          </Link>
+
+          {/* ================= DESKTOP NAV ================= */}
+          <nav className="hidden lg:block">
+            <ul className="flex items-center gap-6 xl:gap-10">
               <li>
-                <Link to="/Home" onClick={() => setOpenMobileMenu(false)}>Home</Link>
+                <Link
+                  to="/Home"
+                  className="hover:text-red-600 transition"
+                >
+                  Home
+                </Link>
               </li>
+
               <li>
-                <Link className="active" to="/Contact" onClick={() => setOpenMobileMenu(false)}>Contact</Link>
+                <Link
+                  to="/Contact"
+                  className="hover:text-red-600 transition"
+                >
+                  Contact
+                </Link>
               </li>
+
               <li>
-                <Link to="/About" onClick={() => setOpenMobileMenu(false)}>About</Link>
+                <Link
+                  to="/About"
+                  className="hover:text-red-600 transition"
+                >
+                  About
+                </Link>
               </li>
+
               <li>
-                <Link to="/SignUp" onClick={() => setOpenMobileMenu(false)}>Sign Up</Link>
+                <Link
+                  to="/SignUp"
+                  className="hover:text-red-600 transition"
+                >
+                  Sign Up
+                </Link>
               </li>
             </ul>
           </nav>
 
-          
-          <div className="hidden md:flex items-center gap-5">
-            <div className="search flex p-2 justify-center items-center bg-[--secondary-color] rounded-md">
+          {/* ================= DESKTOP ACTIONS ================= */}
+          <div className="hidden lg:flex items-center gap-4 xl:gap-5">
+
+            {/* Search */}
+            <div className="flex items-center gap-2 p-2 bg-[--secondary-color] rounded-md">
               <input
-                className="bg-[--secondary-color] outline-none text-[--main-color] w-52"
-                placeholder="What are you looking for?"
                 type="text"
+                placeholder="What are you looking for?"
+                className="bg-transparent outline-none text-[--main-color] w-36 xl:w-48"
               />
+
+              <CiSearch className="text-xl" />
             </div>
 
-            <div className="flex gap-3 text-xl">
-              <div className="relative inline-block">
-                <Link to="/Cart"><CiHeart className="text-2xl text-[--text-color]" /></Link>
+            {/* Heart */}
+            <Link to="/Cart" className="relative">
+              <CiHeart className="text-2xl text-[--text-color]" />
+
+              {count > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {count}
+                </span>
+              )}
+            </Link>
+
+            {/* Cart */}
+            <Link to="/Cart" className="relative">
+              <BsCart3 className="text-2xl text-[--text-color]" />
+
+              {count > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {count}
+                </span>
+              )}
+            </Link>
+
+            {/* Account */}
+            <div className="relative">
+              <button
+                onClick={() => setOpenAccount(!openAccount)}
+                className="text-red-600 text-2xl focus:outline-none"
+              >
+                <MdAccountCircle />
+              </button>
+
+              {openAccount && (
+                <div
+                  className="
+                    absolute
+                    right-0
+                    top-full
+                    mt-3
+                    w-52
+                    bg-zinc-700
+                    rounded-lg
+                    shadow-xl
+                    z-50
+                    overflow-hidden
+                  "
+                >
+                  <ul className="text-white text-sm">
+
+                    <li className="px-4 py-3 hover:bg-zinc-600 cursor-pointer flex items-center gap-3">
+                      <MdAccountCircle className="text-xl" />
+                      <span>Manage My Account</span>
+                    </li>
+
+                    <li className="px-4 py-3 hover:bg-zinc-600 cursor-pointer flex items-center gap-3">
+                      <FaCalendar className="text-xl" />
+                      <span>My Order</span>
+                    </li>
+
+                    <li className="px-4 py-3 hover:bg-zinc-600 cursor-pointer flex items-center gap-3">
+                      <ImCancelCircle className="text-xl" />
+                      <span>My Cancellations</span>
+                    </li>
+
+                    <li className="px-4 py-3 hover:bg-zinc-600 cursor-pointer flex items-center gap-3">
+                      <CiStar className="text-xl" />
+                      <span>My Reviews</span>
+                    </li>
+
+                    <li className="px-4 py-3 hover:bg-zinc-600 cursor-pointer flex items-center gap-3">
+                      <IoIosLogOut className="text-xl" />
+                      <span>Logout</span>
+                    </li>
+
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* ================= MOBILE MENU BUTTON ================= */}
+          <button
+            className="lg:hidden text-3xl"
+            onClick={() => setOpenMobileMenu(!openMobileMenu)}
+          >
+            {openMobileMenu ? (
+              <MdOutlineRestaurantMenu />
+            ) : (
+              <CiMenuFries />
+            )}
+          </button>
+        </div>
+
+        {/* ================= MOBILE MENU ================= */}
+        {openMobileMenu && (
+          <div className="lg:hidden mt-5 border-t pt-5">
+
+            {/* Mobile Navigation */}
+            <nav>
+              <ul className="flex flex-col gap-4 text-center">
+
+                <li>
+                  <Link
+                    to="/Home"
+                    onClick={closeMobileMenu}
+                    className="block py-2 hover:text-red-600"
+                  >
+                    Home
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/Contact"
+                    onClick={closeMobileMenu}
+                    className="block py-2 hover:text-red-600"
+                  >
+                    Contact
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/About"
+                    onClick={closeMobileMenu}
+                    className="block py-2 hover:text-red-600"
+                  >
+                    About
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/SignUp"
+                    onClick={closeMobileMenu}
+                    className="block py-2 hover:text-red-600"
+                  >
+                    Sign Up
+                  </Link>
+                </li>
+
+              </ul>
+            </nav>
+
+            {/* Mobile Search */}
+            <div className="mt-5 flex items-center gap-2 p-3 bg-[--secondary-color] rounded-md">
+              <input
+                type="text"
+                placeholder="What are you looking for?"
+                className="bg-transparent outline-none w-full"
+              />
+
+              <CiSearch className="text-xl" />
+            </div>
+
+            {/* Mobile Icons */}
+            <div className="flex justify-center items-center gap-7 mt-5">
+
+              <Link to="/Cart" className="relative">
+                <CiHeart className="text-2xl" />
+
                 {count > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                     {count}
                   </span>
                 )}
-              </div>
+              </Link>
 
-              <div className="relative inline-block">
-                <Link to="/Cart"><BsCart3 className="text-2xl text-[--text-color]" /></Link>
+              <Link to="/Cart" className="relative">
+                <BsCart3 className="text-2xl" />
+
                 {count > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                     {count}
                   </span>
                 )}
+              </Link>
+
+              {/* Mobile Account */}
+              <div className="relative">
+                <button
+                  onClick={() => setOpenAccount(!openAccount)}
+                  className="text-red-600 text-2xl"
+                >
+                  <MdAccountCircle />
+                </button>
+
+                {openAccount && (
+                  <div className="absolute right-0 top-full mt-3 w-52 bg-zinc-700 rounded-lg shadow-xl z-50 overflow-hidden">
+
+                    <ul className="text-white text-sm">
+
+                      <li className="px-4 py-3 hover:bg-zinc-600 flex items-center gap-3">
+                        <MdAccountCircle />
+                        Manage My Account
+                      </li>
+
+                      <li className="px-4 py-3 hover:bg-zinc-600 flex items-center gap-3">
+                        <FaCalendar />
+                        My Order
+                      </li>
+
+                      <li className="px-4 py-3 hover:bg-zinc-600 flex items-center gap-3">
+                        <ImCancelCircle />
+                        My Cancellations
+                      </li>
+
+                      <li className="px-4 py-3 hover:bg-zinc-600 flex items-center gap-3">
+                        <CiStar />
+                        My Reviews
+                      </li>
+
+                      <li className="px-4 py-3 hover:bg-zinc-600 flex items-center gap-3">
+                        <IoIosLogOut />
+                        Logout
+                      </li>
+
+                    </ul>
+                  </div>
+                )}
               </div>
+
             </div>
-
-
-        <div className="relative mt-4 md:mt-0">
-         <button
-           onClick={() => setOpenAccount(!openAccount)}
-           className="flex items-center gap-2 text-red-600 text-2xl focus:outline-none"
-         >
-           <MdAccountCircle />
-         </button>
-         {openAccount && (
-           <div className="absolute right-0 mt-2 w-44 bg-zinc-600 border border-gray-200 rounded-lg shadow-lg backdrop-blur-sm z-50">
-             <ul className="text-white text-sm">
-               <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
-                 <MdAccountCircle className="text-2xl inline mr-2" />
-                 Manage My Account
-               </li>
-               <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
-                 <FaCalendar className="text-2xl inline mr-2" />
-                 My Order
-               </li>
-               <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
-                 <ImCancelCircle className="text-2xl inline mr-2" />
-                 My Cancellations
-               </li>
-               <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
-                 <CiStar className="text-2xl inline mr-2" />
-                 My Reviews
-               </li>
-               <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
-                 <IoIosLogOut className="text-2xl inline mr-2" />
-                 Logout
-               </li>
-             </ul>
-           </div>
-         )}
-       </div>
-
-
           </div>
-        </div>
-
-        <div className="mt-4 flex flex-col gap-3 md:hidden">
-          <div className="search flex p-2 bg-[--secondary-color] rounded-md items-center gap-2">
-            <input
-              className="bg-[--secondary-color] outline-none text-[--main-color] w-full"
-              placeholder="What are you looking for?"
-              type="text"
-            />
-            <CiSearch className="text-xl" />
-          </div>
-
-          <div className="flex justify-center gap-6 text-2xl">
-            <CiHeart />
-            <BsCart3 />
-              <MdAccountCircle />
-          </div>
-        </div>
-
-     
-
+        )}
       </div>
-          <hr className="mt-4" />
 
-    </section>
+      <hr />
+    </header>
   );
 }
+
